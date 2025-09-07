@@ -1,0 +1,32 @@
+{
+    "name": "airygen/airyseo",
+    "version": "1.0.0",
+    "type": "wordpress-plugin",
+    "keywords": [
+      "wordpress",
+      "wordpress-seo",
+      "wordpress-plugin"
+    ],
+    "description": "A lightweight WordPress plugin offering essential SEO tools without the bloat.",
+    "homepage": "https://airyseo.com",
+    "license": "GPL-3.0",
+    "authors": [
+      {
+        "name": "Terry Lin",
+        "email": "contact@terryl.in",
+        "homepage": "https://airygen.com",
+        "role": "Developer"
+      }
+    ],
+    "autoload": {
+      "psr-4": {
+        "AirySEO\\": "src/"
+      },
+      "files": [
+        "functions.php"
+      ]
+    },
+    "require": {
+      "php": ">=7.1"
+    }
+  }
