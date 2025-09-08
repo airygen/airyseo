@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace AirySeo\Admin;
 
-use AirySEO\Constants;
+use AirySeo\Constants;
 
 /**
  * Menu controller.
@@ -29,12 +29,12 @@ class Menu {
 	 *
 	 * @return void
 	 */
-	function create_options_page(): void {
+	public function create_options_page(): void {
 		add_options_page(
-			__( 'Airy SEO', 'airy-seo' ),
-			__( 'Airy SEO', 'airy-seo' ),
+			__( 'Airy SEO', 'airyseo' ),
+			__( 'Airy SEO', 'airyseo' ),
 			'manage_options',
-			Constants::MENU_SLUG,
+			'airyseo-options',
 			array( $this, 'render_options_page' )
 		);
 	}
@@ -45,14 +45,13 @@ class Menu {
 	 *
 	 * @return void
 	 */
-	function render_options_page(): void {
-		echo airyseo_get_template(
+	public function render_options_page(): void {
+		airyseo_render_template(
 			'admin/options',
 			array(
-				'setting_group' => Constants::SETTING_GROUP,
-				'page'          => Constants::MENU_SLUG,
+				'setting_group' => 'airyseo_settings_group',
+				'page'          => 'airyseo-options',
 			)
 		);
 	}
-
 }

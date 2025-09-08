@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Airy SEO
  * Plugin URI:  https://github.com/airygen/airyseo
- * Description: ightweight WordPress SEO plugin designed for simplicity and performance.
+ * Description: A lightweight WordPress SEO plugin designed for simplicity and performance.
  * Version:     1.0.0
  * Author:      Airygen Team
  * Author URI:  https://github.com/airygen
@@ -10,6 +10,8 @@
  * License URI: http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain: airyseo
  * Domain Path: /languages
+ *
+ * @package airyseo
  */
 
 /**
@@ -18,5 +20,5 @@
 
 require 'vendor/autoload.php';
 
-$airyseo = new AirySEO\Launcher( __FILE__, '1.0.0' );
+$airyseo = new AirySeo\Launcher( __FILE__, '1.0.0' );
 $airyseo->init();

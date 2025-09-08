@@ -6,10 +6,10 @@
 ?>
 
 <label for="facebook-open-graph-option-yes">
-	<?php _e( 'Yes', 'airy-seo' ); ?>
-	<input id="facebook-open-graph-option-yes" type="radio" name="<?php echo $name; ?>" value="yes" <?php checked( 'yes', $option ); ?> />
+	<?php esc_html_e( 'Yes', 'airyseo' ); ?>
+	<input id="facebook-open-graph-option-yes" type="radio" name="<?php echo esc_attr( $name ); ?>" value="yes" <?php checked( 'yes', $option ); ?> />
 </label>
 <label for="facebook-open-graph-option-no">
-	<?php _e( 'No', 'airy-seo' ); ?>
-	<input id="facebook-open-graph-option-no" type="radio" name="<?php echo $name; ?>" value="no" <?php checked( 'no', $option ); ?> />
+	<?php esc_html_e( 'No', 'airyseo' ); ?>
+	<input id="facebook-open-graph-option-no" type="radio" name="<?php echo esc_attr( $name ); ?>" value="no" <?php checked( 'no', $option ); ?> />
 </label>

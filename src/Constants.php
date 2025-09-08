@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace AirySEO;
+namespace AirySeo;
 
 /**
  * Airy SEO plugin constants.
@@ -19,18 +19,9 @@ class Constants {
 	// The postmeta key for the description.
 	const META_DESCRIPTION = '_airyseo_description';
 
-	// The pluing settings name.
-	const SETTING_OPTION_NAME = 'airyseo_settings';
-
-	// The pluing settings group.
-	const SETTING_GROUP = 'airyseo_settings_group';
-
-	// The plugin menu slug.
-	const MENU_SLUG = 'airyseo-options';
-
 	// The setting option of the Facebook OG tags.
-	const OPTION_ENABLE_FACEBOOK_OG_TAGS = 'enable_facebook_og_tags';
+	const OPTION_ENABLE_FACEBOOK_OG_TAGS = '_airyseo_enable_facebook_og_tags';
 
 	// The setting option of the Twitter card.
-	const OPTION_ENABLE_TWITTER_CARD = 'enable_twitter_card';
+	const OPTION_ENABLE_TWITTER_CARD = '_airyseo_enable_twitter_card';
 }

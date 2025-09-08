@@ -20,13 +20,29 @@
     ],
     "autoload": {
       "psr-4": {
-        "AirySEO\\": "src/"
+        "AirySeo\\": "src/",
+        "AirySeoTest\\": "tests/"
       },
       "files": [
-        "functions.php"
+        "inc/functions.php"
       ]
     },
     "require": {
       "php": ">=7.1"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^2.1",
+        "wp-coding-standards/wpcs": "^3.2",
+        "phpstan/extension-installer": "^1.4",
+        "szepeviktor/phpstan-wordpress": "^2.0",
+        "wp-phpunit/wp-phpunit": "^6.8",
+        "phpunit/phpunit": "^8.0",
+        "yoast/phpunit-polyfills": "^4.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpstan/extension-installer": true
+        }
     }
-  }
+}

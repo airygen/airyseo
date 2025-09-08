@@ -3,10 +3,12 @@ version: '3.8'
 services:
   wordpress:
     build: .
+    working_dir: /var/www/html/wp-content/plugins/airyseo
     ports:
       - "8000:8000"
     volumes:
       - .:/var/www/html/wp-content/plugins/airyseo
+      - ./wp-content/uploads:/var/www/html/wp-content/uploads
       - ./vendor:/var/www/html/wp-content/plugins/airyseo/vendor
     depends_on:
       - db

@@ -1,0 +1,77 @@
+name: Build and Deploy
+
+on:
+  release:
+    types: [published]
+    branches: [main, release]
+
+env:
+  WP_SLUG: airyseo
+  PLUGIN_FILE: airyseo.php
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate version and decide publish
+        id: validate
+        uses: airygen/action-wordpress-plugin-release-check@v1
+        with:
+          plugin_file: ${{ env.PLUGIN_FILE }}
+
+      - name: Build
+        run: |
+          composer install --no-dev --optimize-autoloader
+
+      - name: Verify vendor folder
+        run: |
+          if [ ! -d vendor ]; then
+            echo "vendor/ was not generated. Check Composer logs and PHP platform constraints."
+            exit 1
+          fi
+
+      - name: Stage release payload
+        run: |
+          set -euo pipefail
+          rm -rf .release
+          mkdir -p .release
+          for d in languages inc src resources vendor; do
+            [ -d "$d" ] && cp -R "$d" .release/
+          done
+          cp -v "$PLUGIN_FILE" .release/
+          cp -v uninstall.php .release/
+          cp -v README.txt .release/
+          cp -v LICENSE .release/
+          cp -v composer.json .release/
+          echo "Staged payload tree:"
+          (cd .release && find . -maxdepth 2 -print)
+
+      - name: Create release zip
+        run: |
+          cd .release
+          zip -r "../${{ env.WP_SLUG }}-${{ steps.validate.outputs.tag }}.zip" .
+  
+      - name: Attach zip to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ env.WP_SLUG }}-${{ steps.validate.outputs.tag }}.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+
+      - name: Deploy to WordPress.org
+        if: steps.validate.outputs.publish == 'true' && github.ref == 'refs/heads/release'
+        uses: 10up/action-wordpress-plugin-deploy@2.3.0
+        env:
+          SVN_USERNAME: ${{ secrets.WP_SVN_USER }}
+          SVN_PASSWORD: ${{ secrets.WP_SVN_PASS }}
+        with:
+          slug: ${{ env.WP_SLUG }}
+          build-dir: .release
+          generate-zip: true

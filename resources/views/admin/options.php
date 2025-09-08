@@ -6,8 +6,8 @@
 ?>
 
 <div class="wrap">
-	<h1><?php esc_html_e( 'Airy SEO', 'airy-seo' ); ?></h1>
-	<p><?php esc_html_e( 'Please select the feature you would like to use.', 'airy-seo' ); ?></p>
+	<h1><?php esc_html_e( 'Airy SEO', 'airyseo' ); ?></h1>
+	<p><?php esc_html_e( 'Please select the feature you would like to use.', 'airyseo' ); ?></p>
 	<form action="options.php" method="post">
 		<?php
 		settings_fields( $setting_group );

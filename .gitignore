@@ -1,10 +1,7 @@
-phpunit
-phpunit.xml.dist
-.phpcs.xml.dist
-tests
-bin
 .vscode
 vendor/
 .idea
 .DS_Store
 node_modules
+.phpunit.result.cache
+*.log

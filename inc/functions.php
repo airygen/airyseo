@@ -6,8 +6,6 @@
  * @package AirySEO
  */
 
-use AirySEO\Constants;
-
 /**
  * Load a template file.
  *
@@ -16,7 +14,7 @@ use AirySEO\Constants;
  * @return string
  */
 function airyseo_get_template( string $template_path, $data = array() ) {
-	$template_path = plugin_dir_path( __FILE__ ) . 'resources/views/' . $template_path . '.php';
+	$template_path = plugin_dir_path( __FILE__ ) . '../resources/views/' . $template_path . '.php';
 
 	if ( ! file_exists( $template_path ) ) {
 		return '';
@@ -35,20 +33,31 @@ function airyseo_get_template( string $template_path, $data = array() ) {
 }
 
 /**
+ * Render a template file.
+ *
+ * @param string $template_path The path of the view file.
+ * @param array  $data          The data to be passed to the view file.
+ * @return void
+ */
+function airyseo_render_template( string $template_path, $data = array() ) {
+	echo airyseo_get_template( $template_path, $data ); // phpcs:ignore
+}
+
+/**
  * Get a specific option from the settings.
  *
  * @param string $option  The option name.
- * @param mixed  $default The default value.
+ * @param mixed  $default_value The default value.
  * @return mixed
  */
-function airyseo_get_option( string $option, $default = '' ) {
-	$options = get_option( Constants::SETTING_OPTION_NAME );
+function airyseo_get_option( string $option, $default_value = '' ) {
+	$options = get_option( 'airyseo_settings' );
 
 	if ( isset( $options[ $option ] ) ) {
 		return $options[ $option ];
 	}
 
-	return $default;
+	return $default_value;
 }
 
 /**
@@ -58,5 +67,5 @@ function airyseo_get_option( string $option, $default = '' ) {
  * @return string
  */
 function airyseo_get_option_name( string $option ): string {
-	return Constants::SETTING_OPTION_NAME . '[' . $option . ']';
+	return 'airyseo_settings[' . $option . ']';
 }

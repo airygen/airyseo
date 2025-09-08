@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace AirySeo\Admin;
 
-use AirySEO\Constants;
+use AirySeo\Constants;
 
 /**
  * Settings controller.
@@ -27,7 +27,7 @@ class Settings {
 	 * Constructor.
 	 */
 	public function __construct() {
-		$this->settings = get_option( Constants::SETTING_OPTION_NAME );
+		$this->settings = get_option( 'airyseo_settings' );
 
 		add_action( 'admin_init', array( $this, 'regster_setting' ) );
 		add_action( 'admin_init', array( $this, 'add_setting_fields' ) );
@@ -40,8 +40,8 @@ class Settings {
 	 */
 	public function regster_setting(): void {
 		register_setting(
-			Constants::SETTING_GROUP,
-			Constants::SETTING_OPTION_NAME
+			'airyseo_settings_group',
+			'airyseo_settings'
 		);
 	}
 
@@ -53,24 +53,24 @@ class Settings {
 	public function add_setting_fields(): void {
 		add_settings_section(
 			'airy-seo-settings-section',
-			__( 'General Settings', 'airy-seo' ),
+			__( 'General Settings', 'airyseo' ),
 			array( $this, 'render_section' ),
-			Constants::MENU_SLUG
+			'airyseo-options'
 		);
 
 		add_settings_field(
 			'social-media-facebook',
-			__( 'Facebook Open Graph', 'airy-seo' ),
+			__( 'Facebook Open Graph', 'airyseo' ),
 			array( $this, 'render_facebook_open_graph_option' ),
-			Constants::MENU_SLUG,
+			'airyseo-options',
 			'airy-seo-settings-section'
 		);
 
 		add_settings_field(
 			'social-media-twitter',
-			__( 'Twitter Card', 'airy-seo' ),
+			__( 'Twitter Card', 'airyseo' ),
 			array( $this, 'render_twitter_card_option' ),
-			Constants::MENU_SLUG,
+			'airyseo-options',
 			'airy-seo-settings-section'
 		);
 	}
@@ -93,7 +93,7 @@ class Settings {
 		$name   = airyseo_get_option_name( Constants::OPTION_ENABLE_TWITTER_CARD );
 		$option = airyseo_get_option( Constants::OPTION_ENABLE_TWITTER_CARD );
 
-		echo airyseo_get_template(
+		airyseo_render_template(
 			'admin/options/twitter-card',
 			array(
 				'name'   => $name,
@@ -111,7 +111,7 @@ class Settings {
 		$name   = airyseo_get_option_name( Constants::OPTION_ENABLE_FACEBOOK_OG_TAGS );
 		$option = airyseo_get_option( Constants::OPTION_ENABLE_FACEBOOK_OG_TAGS );
 
-		echo airyseo_get_template(
+		airyseo_render_template(
 			'admin/options/facebook-open-graph',
 			array(
 				'name'   => $name,

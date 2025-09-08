@@ -8,7 +8,7 @@
 <div id="airyseo-metabox">
 	<div class="airyseo-metabox__item">
 		<div class="airyseo-metabox__item-row">
-			<label for="airyseo-title"><?php _e( 'Title', 'airy-seo' ); ?></label>
+			<label for="airyseo-title"><?php esc_html_e( 'Title', 'airyseo' ); ?></label>
 			<div class="airyseo-metabox__seo-status">
 				<span class="seo-status__count">
 					<span class="seo-status__title--current">0</span>
@@ -23,7 +23,7 @@
 	</div>
 	<div class="airyseo-metabox__item">
 		<div class="airyseo-metabox__item-row">
-			<label for="airyseo-description"><?php _e( 'Description', 'airy-seo' ); ?></label>
+			<label for="airyseo-description"><?php esc_html_e( 'Description', 'airyseo' ); ?></label>
 			<div class="airyseo-metabox__seo-status">
 				<span class="seo-status__count">
 					<span class="seo-status__description--current">0</span>
@@ -35,5 +35,5 @@
 			<textarea id="airyseo-description" name="airyseo_description"><?php echo esc_attr( $description ); ?></textarea>
 		</div>
 	</div>
-	<?php echo $nonce_field; ?>
+	<?php wp_nonce_field( 'airyseo_create_nonce', 'airyseo_metabox_nonce' ); ?>
 </div>

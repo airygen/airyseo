@@ -33,12 +33,12 @@ class TwitterCard {
 
 		global $post;
 
-		$post_content  = strip_tags( $post->post_content );
+		$post_content  = wp_strip_all_tags( $post->post_content );
 		$description   = wp_trim_words( $post_content, 15, '...' );
 		$thumbnail_src = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'medium' );
 
 		$data = array(
-			'x' => array(
+			'x_tag' => array(
 				'twitter:card'        => 'summary_large_image',
 				'twitter:title'       => get_the_title(),
 				'twitter:description' => $description,
@@ -47,6 +47,6 @@ class TwitterCard {
 			),
 		);
 
-		echo airyseo_get_template( 'modules/twitter-card', $data );
+		airyseo_render_template( 'modules/twitter-card', $data );
 	}
 }

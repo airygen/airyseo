@@ -9,8 +9,6 @@ declare(strict_types=1);
 
 namespace AirySeo\Admin;
 
-use AirySEO\Constants;
-
 /**
  * Metabox controller.
  */
@@ -33,7 +31,7 @@ class Activation {
 	 */
 	public function activate() {
 		update_option(
-			Constants::SETTING_OPTION_NAME,
+			'airyseo_settings',
 			array(
 				'enable_facebook_open_graph' => 'no',
 				'enable_twitter_card'        => 'no',
@@ -47,6 +45,6 @@ class Activation {
 	 * @return void
 	 */
 	public function deactivate() {
-		delete_option( Constants::SETTING_OPTION_NAME );
+		delete_option( 'airyseo_settings' );
 	}
 }

@@ -1,6 +1,5 @@
-PROJECT_NAME=airyseo
-
 .PHONY: up build down restart reset shell shell.db \ 
+	phpcs phpstan phpcbf unit-tests \
 	wp.install wp.activate-plugin wp.init-dev-site
 
 up:
@@ -59,3 +58,16 @@ wp.activate-plugin:
 wp.init-dev-site:
 	make wp.install
 	make wp.activate-plugin
+
+phpcs:
+	php -d xdebug.mode=off vendor/bin/phpcs --parallel=`getconf _NPROCESSORS_ONLN`
+
+phpstan:
+	php -d xdebug.mode=off vendor/bin/phpstan analyse --memory-limit=-1
+
+unit-tests:
+	php -d xdebug.mode=off vendor/bin/phpunit --testdox
+
+phpcbf:
+	vendor/bin/phpcbf
+

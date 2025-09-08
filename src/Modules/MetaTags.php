@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace AirySeo\Modules;
 
-use AirySEO\Constants;
+use AirySeo\Constants;
 
 /**
  * Meta tags controller.
@@ -57,7 +57,7 @@ class MetaTags {
 
 		$description = get_post_meta( $post->ID, Constants::META_DESCRIPTION, true );
 		if ( ! empty( $description ) ) {
-			echo '<meta name="description" content="' . $description . '">' . "\n";
+			echo '<meta name="description" content="' . esc_attr( $description ) . '">' . "\n";
 		}
 	}
 }

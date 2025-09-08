@@ -11,7 +11,7 @@ declare(strict_types=1);
 namespace AirySeo\Admin;
 
 use WP_Post;
-use AirySEO\Constants;
+use AirySeo\Constants;
 
 /**
  * Metabox controller.
@@ -32,7 +32,7 @@ class Metabox {
 	public function add_meta_box(): void {
 		add_meta_box(
 			'airyseo_post_metabox',
-			__( 'Airy SEO', 'airy-seo' ),
+			__( 'Airy SEO', 'airyseo' ),
 			array( $this, 'render_meta_box' ),
 			array( 'post', 'page' ),
 			'normal',
@@ -48,14 +48,12 @@ class Metabox {
 	public function render_meta_box( WP_Post $post ) {
 		$title       = get_post_meta( $post->ID, '_airyseo_title', true );
 		$description = get_post_meta( $post->ID, '_airyseo_description', true );
-		$nonce_field = wp_nonce_field( 'airyseo_create_nonce', 'airyseo_metabox_nonce', false );
 
-		echo airyseo_get_template(
+		airyseo_render_template(
 			'admin/metabox',
 			array(
 				'title'       => $title,
 				'description' => $description,
-				'nonce_field' => $nonce_field,
 			)
 		);
 	}
@@ -65,7 +63,7 @@ class Metabox {
 	 *
 	 * @param int $post_id Current post ID.
 	 */
-	function save_meta_box( int $post_id ) {
+	public function save_meta_box( int $post_id ) {
 		if (
 			! isset( $_POST['airyseo_metabox_nonce'] ) ||
 			! current_user_can( 'edit_post', $post_id )

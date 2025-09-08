@@ -2,21 +2,23 @@
 Contributors: terrylin
 Tags: seo, search engine optimization
 Requires at least: 4.0
-Tested up to: 6.8.2
-Stable tag: 1.0.0
-Requires PHP: 7.1.0
+Tested up to: 6.8
+Stable tag: 1.0
+Requires PHP: 7.1
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl.html
+A lightweight WordPress SEO plugin designed for simplicity and performance.
 
 == Description ==
 
 A lightweight WordPress SEO plugin designed for simplicity and performance.
 
+AirySEO is open source. View the code on GitHub: https://github.com/airygen/airyseo
+
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/airy-seo` directory, or install the plugin through the WordPress plugins screen directly.
+1. Upload the plugin files to the `/wp-content/plugins/airyseo` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
-3. Go to the Airy SEO menu in Plugins and set your Markdown options.
 
 == Features ==
 
@@ -24,9 +26,11 @@ A lightweight WordPress SEO plugin designed for simplicity and performance.
 2. Twitter card tags.
 3. Facebook Open Graph tags.
 
+=== 
+
 == Copyright ==
 
-Airy SEO, Copyright 2023 TerryL.in
+Airy SEO, Copyright 2025 TerryL.in
 Airy SEO is distributed under the terms of the GNU GPL
 
 This program is free software: you can redistribute it and/or modify
@@ -41,7 +45,7 @@ GNU General Public License for more details.
 
 == Changelog ==
 
-= 1.0.0 (2023/10/15)
+= 1.0.0 (2025/9/9)
 
 * First release.
 

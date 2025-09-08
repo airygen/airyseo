@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace AirySEO;
+namespace AirySeo;
 
 /**
  * The class that initializes the plugin.
@@ -80,7 +80,7 @@ class Launcher {
 	 */
 	private function load_textdomain(): void {
 		load_plugin_textdomain(
-			'airy-seo',
+			'airyseo',
 			false,
 			dirname( $this->plugin_name ) . '/languages'
 		);

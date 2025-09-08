@@ -34,7 +34,7 @@ class Posts {
 		foreach ( $columns as $key => $value ) {
 			$new_columns[ $key ] = $value;
 			if ( 'author' === $key ) {
-				$new_columns['seo_column'] = __( 'SEO', 'airy-seo' );
+				$new_columns['seo_column'] = __( 'SEO', 'airyseo' );
 			}
 		}
 
@@ -55,7 +55,7 @@ class Posts {
 		$title       = get_post_meta( $post_id, '_airyseo_title', true );
 		$description = get_post_meta( $post_id, '_airyseo_description', true );
 		if ( ! empty( $title ) && ! empty( $description ) ) {
-			echo airyseo_get_template( 'admin/parts/seo-column' );
+			airyseo_render_template( 'admin/parts/seo-column' );
 		}
 	}
 }

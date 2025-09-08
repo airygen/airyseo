@@ -48,14 +48,14 @@ class Assets {
 	 * @param string $hook The current page hook suffix.
 	 * @return void
 	 */
-	function enqueue_styles( string $hook ): void {
+	public function enqueue_styles( string $hook ): void {
 		if ( 'post.php' !== $hook && 'post-new.php' === $hook ) {
 			return;
 		}
 
 		wp_register_style(
 			'airyseo_admin_css',
-			$this->base_url . 'assets/css/style.css',
+			$this->base_url . 'resources/assets/css/style.css',
 			false,
 			$this->asset_version
 		);
@@ -69,14 +69,14 @@ class Assets {
 	 * @param string $hook The current page hook suffix.
 	 * @return void
 	 */
-	function enqueue_scripts( $hook ) {
+	public function enqueue_scripts( $hook ) {
 		if ( 'post.php' !== $hook && 'post-new.php' === $hook ) {
 			return;
 		}
 
 		wp_register_script(
 			'airyseo_admin_js',
-			$this->base_url . 'assets/js/metabox.js',
+			$this->base_url . 'resources/assets/js/metabox.js',
 			array(),
 			$this->asset_version,
 			true
