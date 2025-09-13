@@ -41,8 +41,8 @@ jobs:
         id: pack
         uses: airygen/actions/stage-zip-file@main
         with:
-          plugin_file: myplugin.php
-          plugin_slug: myplugin
+          plugin_file: ${{ env.PLUGIN_FILE }}
+          plugin_slug: ${{ env.PLUGIN_SLUG }}
           plugin_version: ${{ steps.validate.outputs.tag }}
           stage_dirs: |
             languages
