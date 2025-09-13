@@ -6,7 +6,7 @@ on:
     branches: [main, release]
 
 env:
-  WP_SLUG: airyseo
+  PLUGIN_SLUG: airyseo
   PLUGIN_FILE: airyseo.php
 
 permissions:
@@ -22,7 +22,7 @@ jobs:
 
       - name: Validate version and decide publish
         id: validate
-        uses: airygen/action-wordpress-plugin-release-check@v1
+        uses: airygen/actions/validate-plugin-version@main
         with:
           plugin_file: ${{ env.PLUGIN_FILE }}
 
@@ -37,41 +37,37 @@ jobs:
             exit 1
           fi
 
-      - name: Stage release payload
-        run: |
-          set -euo pipefail
-          rm -rf .release
-          mkdir -p .release
-          for d in languages inc src resources vendor; do
-            [ -d "$d" ] && cp -R "$d" .release/
-          done
-          cp -v "$PLUGIN_FILE" .release/
-          cp -v uninstall.php .release/
-          cp -v README.txt .release/
-          cp -v LICENSE .release/
-          cp -v composer.json .release/
-          echo "Staged payload tree:"
-          (cd .release && find . -maxdepth 2 -print)
-
-      - name: Create release zip
-        run: |
-          cd .release
-          zip -r "../${{ env.WP_SLUG }}-${{ steps.validate.outputs.tag }}.zip" .
+      - name: Stage & Zip
+        id: pack
+        uses: airygen/actions/stage-zip-file@main
+        with:
+          plugin_file: myplugin.php
+          plugin_slug: myplugin
+          plugin_version: ${{ steps.validate.outputs.tag }}
+          stage_dirs: |
+            languages
+            inc
+            src
+            vendor
+          extra_files: |
+            uninstall.php
+            LICENSE
+            composer.json
   
       - name: Attach zip to GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: ${{ env.WP_SLUG }}-${{ steps.validate.outputs.tag }}.zip
+          files: {{ steps.pack.outputs.zip_path }}
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
 
       - name: Deploy to WordPress.org
-        if: steps.validate.outputs.publish == 'true' && github.ref == 'refs/heads/release'
+        if: steps.validate.outputs.publish == 'true' && github.event.release.target_commitish == 'release'
         uses: 10up/action-wordpress-plugin-deploy@2.3.0
         env:
           SVN_USERNAME: ${{ secrets.WP_SVN_USER }}
           SVN_PASSWORD: ${{ secrets.WP_SVN_PASS }}
         with:
-          slug: ${{ env.WP_SLUG }}
-          build-dir: .release
+          slug: ${{ env.PLUGIN_SLUG }}
+          build-dir: {{ steps.pack.outputs.release_dir }}
           generate-zip: true
