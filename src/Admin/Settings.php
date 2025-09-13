@@ -27,9 +27,9 @@ class Settings {
 	 * Constructor.
 	 */
 	public function __construct() {
-		$this->settings = get_option( 'airyseo_settings' );
+		$this->settings = get_option( Constants::SETTING_NAME );
 
-		add_action( 'admin_init', array( $this, 'regster_setting' ) );
+		add_action( 'admin_init', array( $this, 'register_setting' ) );
 		add_action( 'admin_init', array( $this, 'add_setting_fields' ) );
 	}
 
@@ -38,10 +38,17 @@ class Settings {
 	 *
 	 * @return void
 	 */
-	public function regster_setting(): void {
+	public function register_setting(): void {
 		register_setting(
-			'airyseo_settings_group',
-			'airyseo_settings'
+			Constants::SETTING_GROUP,
+			Constants::SETTING_NAME,
+			array(
+				'type'              => 'array',
+				'default'           => array(),
+				'sanitize_callback' => function ( $value ) {
+					return is_array( $value ) ? array_map( 'sanitize_text_field', $value ) : array();
+				},
+			)
 		);
 	}
 

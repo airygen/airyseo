@@ -49,7 +49,7 @@ class Menu {
 		airyseo_render_template(
 			'admin/options',
 			array(
-				'setting_group' => 'airyseo_settings_group',
+				'setting_group' => Constants::SETTING_GROUP,
 				'page'          => 'airyseo-options',
 			)
 		);

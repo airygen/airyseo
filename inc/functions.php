@@ -6,6 +6,10 @@
  * @package AirySEO
  */
 
+declare( strict_types=1 );
+
+use AirySeo\Constants;
+
 /**
  * Load a template file.
  *
@@ -51,7 +55,7 @@ function airyseo_render_template( string $template_path, $data = array() ) {
  * @return mixed
  */
 function airyseo_get_option( string $option, $default_value = '' ) {
-	$options = get_option( 'airyseo_settings' );
+	$options = get_option( Constants::SETTING_NAME );
 
 	if ( isset( $options[ $option ] ) ) {
 		return $options[ $option ];

@@ -13,6 +13,12 @@ namespace AirySeo;
  */
 class Constants {
 
+	// The settings option name.
+	const SETTING_NAME = 'airyseo_settings';
+
+	// The settings group name.
+	const SETTING_GROUP = 'airyseo_settings_group';
+
 	// The postmeta key for the title.
 	const META_TITLE = '_airyseo_title';
 
