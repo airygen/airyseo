@@ -3,7 +3,7 @@ Contributors: terrylin
 Tags: seo, search engine optimization
 Requires at least: 4.0
 Tested up to: 6.8
-Stable tag: 1.0
+Stable tag: 1.0.0
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl.html
