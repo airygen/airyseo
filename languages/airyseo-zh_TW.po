@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Airy SEO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-13 05:58+0000\n"
-"PO-Revision-Date: 2025-09-13 06:03+0000\n"
+"PO-Revision-Date: 2025-09-13 06:55+0000\n"
 "Last-Translator: \n"
 "Language-Team: 繁體中文\n"
 "Language: zh_TW\n"
@@ -20,7 +20,7 @@ msgid "A lightweight WordPress SEO plugin designed for simplicity and performanc
 msgstr "一個以易用性和效能為主要設計概念的輕量級 WordPress SEO 外掛。"
 
 #. Name of the plugin
-#: src/Admin/Menu.php:34 src/Admin/Menu.php:35 src/Admin/Metabox.php:35
+#: src/Admin/Menu.php:34 src/Admin/Menu.php:35 src/Admin/Metabox.php:35 resources/views/admin/options.php:9
 msgid "Airy SEO"
 msgstr "Airy SEO"
 
@@ -28,11 +28,15 @@ msgstr "Airy SEO"
 msgid "Airygen Team"
 msgstr "Airygen 開發小組"
 
-#: src/Admin/Settings.php:63
+#: resources/views/admin/metabox.php:26
+msgid "Description"
+msgstr "描述"
+
+#: src/Admin/Settings.php:70
 msgid "Facebook Open Graph"
 msgstr "Facebook Open Graph"
 
-#: src/Admin/Settings.php:56
+#: src/Admin/Settings.php:63
 msgid "General Settings"
 msgstr "通用設定"
 
@@ -44,10 +48,26 @@ msgstr "https://github.com/airygen"
 msgid "https://github.com/airygen/airyseo"
 msgstr "https://github.com/airygen/airyseo"
 
+#: resources/views/admin/options/facebook-open-graph.php:13 resources/views/admin/options/twitter-card.php:13
+msgid "No"
+msgstr "否"
+
+#: resources/views/admin/options.php:10
+msgid "Please select the feature you would like to use."
+msgstr "請選擇想要使用的功能。"
+
 #: src/Admin/Posts.php:37
 msgid "SEO"
-msgstr ""
+msgstr "SEO"
 
-#: src/Admin/Settings.php:71
+#: resources/views/admin/metabox.php:11
+msgid "Title"
+msgstr "標題"
+
+#: src/Admin/Settings.php:78
 msgid "Twitter Card"
-msgstr ""
+msgstr "Twitter Card"
+
+#: resources/views/admin/options/facebook-open-graph.php:9 resources/views/admin/options/twitter-card.php:9
+msgid "Yes"
+msgstr "是"
