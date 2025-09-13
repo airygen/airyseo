@@ -57,7 +57,7 @@ jobs:
       - name: Attach zip to GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: {{ steps.pack.outputs.zip_path }}
+          files: ${{ steps.pack.outputs.zip_path }}
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
 
@@ -69,5 +69,5 @@ jobs:
           SVN_PASSWORD: ${{ secrets.WP_SVN_PASS }}
         with:
           slug: ${{ env.PLUGIN_SLUG }}
-          build-dir: {{ steps.pack.outputs.release_dir }}
+          build-dir: ${{ steps.pack.outputs.release_dir }}
           generate-zip: true
