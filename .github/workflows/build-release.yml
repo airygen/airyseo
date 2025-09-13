@@ -46,6 +46,7 @@ jobs:
           plugin_version: ${{ steps.validate.outputs.tag }}
           stage_dirs: |
             languages
+            resources
             inc
             src
             vendor
