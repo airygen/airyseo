@@ -3,6 +3,10 @@
  * The template for the metabox in the post editing page.
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 ?>
 
 <div id="airyseo-metabox">
@@ -18,7 +22,7 @@
 		</div>
 		<div class="airyseo-metabox__item-row">
 			<input type="text" id="airyseo-title" 
-				name="airyseo_title" value="<?php echo esc_attr( $title ); ?>" />
+				name="airyseo_title" value="<?php echo esc_attr( $data['title'] ); ?>" />
 		</div>
 	</div>
 	<div class="airyseo-metabox__item">
@@ -32,7 +36,7 @@
 			</div>
 		</div>
 		<div class="airyseo-metabox__item-row">
-			<textarea id="airyseo-description" name="airyseo_description"><?php echo esc_attr( $description ); ?></textarea>
+			<textarea id="airyseo-description" name="airyseo_description"><?php echo esc_attr( $data['description'] ); ?></textarea>
 		</div>
 	</div>
 	<?php wp_nonce_field( 'airyseo_create_nonce', 'airyseo_metabox_nonce' ); ?>

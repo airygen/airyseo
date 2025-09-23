@@ -3,6 +3,12 @@
  * Template part for displaying the Facebook Open Graph tags.
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+$og_tags = $data['og_tags'];
+
 ?>
 
 <meta property="og:title" content="<?php echo esc_attr( $og_tags['og:title'] ); ?>">

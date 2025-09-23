@@ -3,7 +3,7 @@ Contributors: terrylin
 Tags: seo, search engine optimization
 Requires at least: 4.0
 Tested up to: 6.8
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl.html
@@ -48,4 +48,8 @@ GNU General Public License for more details.
 = 1.0.0 (2025/9/9)
 
 * First release.
+
+= 1.0.1 (2025/9/23)
+
+* fix code review.
 

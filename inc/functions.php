@@ -24,9 +24,7 @@ function airyseo_get_template( string $template_path, $data = array() ) {
 		return '';
 	}
 
-	if ( ! empty( $data ) ) {
-		extract( $data ); // phpcs:ignore
-	}
+	$data = airyseo_recursive_sanitize( $data );
 
 	ob_start();
 	include $template_path;
@@ -44,7 +42,83 @@ function airyseo_get_template( string $template_path, $data = array() ) {
  * @return void
  */
 function airyseo_render_template( string $template_path, $data = array() ) {
-	echo airyseo_get_template( $template_path, $data ); // phpcs:ignore
+	$template_html = airyseo_get_template( $template_path, $data );
+	echo wp_kses( $template_html, airyseo_safe_html_tags() );
+}
+
+/**
+ * Recursively sanitize all string values in an array using sanitize_text_field.
+ *
+ * @param mixed $data The data to be passed to the view file.
+ * @return array
+ */
+function airyseo_recursive_sanitize( $data ) {
+	if ( is_array( $data ) ) {
+		foreach ( $data as $key => $value ) {
+			$data[ $key ] = airyseo_recursive_sanitize( $value );
+		}
+		return $data;
+	}
+	if ( is_string( $data ) ) {
+		return sanitize_text_field( $data );
+	}
+	return $data;
+}
+
+/**
+ * Returns the allowed HTML tags for settings pages.
+ *
+ * @return array The allowed HTML tags and their attributes.
+ */
+function airyseo_safe_html_tags() {
+	return array(
+		'a'      => array(
+			'href'  => array(),
+			'title' => array(),
+		),
+		'br'     => array(),
+		'em'     => array(),
+		'strong' => array(),
+		'input'  => array(
+			'type'    => array(),
+			'name'    => array(),
+			'value'   => array(),
+			'id'      => array(),
+			'checked' => array(),
+		),
+		'label'  => array(
+			'for' => array(),
+		),
+		'form'   => array(
+			'action' => array(),
+			'method' => array(),
+		),
+		'div'    => array(
+			'class' => array(),
+		),
+		'span'   => array(
+			'class' => array(),
+		),
+		'h1'     => array(),
+		'h2'     => array(),
+		'p'      => array(
+			'class' => array(),
+		),
+		'meta'   => array(
+			'property' => array(),
+			'content'  => array(),
+			'name'     => array(),
+		),
+		'table'  => array(
+			'class' => array(),
+			'role'  => array(),
+		),
+		'tr'     => array(),
+		'th'     => array(
+			'scope' => array(),
+		),
+		'td'     => array(),
+	);
 }
 
 /**
