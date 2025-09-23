@@ -3,6 +3,12 @@
  * Template part for displaying the Twitter Card tags.
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+$x_tag = $data['x_tag'];
+
 ?>
 
 <meta name="twitter:card" content="summary_large_image">
